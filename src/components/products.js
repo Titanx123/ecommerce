@@ -26,22 +26,29 @@ const Product = ()=>{
             </div>
         <div className="main-container">
             
-        {
+        
+    {
+          (posts) ?
+          (
+              
             posts.map((item,key)=>{
                 return (
                     <div className="data-container">
         
                 <img src={item.image_link} alt="err" className="data-pics" onClick={(e)=>setButtonPopup(true)} key={item.id} />
             
-            </div>
+                </div>
+                )
+            })
+                
+
+            
+          ) : (<h3>Loading...</h3>)
+      }
         
-        )
-    })}
-    <Popup trigger = {buttonPopup} setTrigger={setButtonPopup}  >
-        
-        
-    </Popup>
+    
     </div>
+    <Popup trigger = {buttonPopup} setTrigger={setButtonPopup}></Popup>
       
         </>
     )
