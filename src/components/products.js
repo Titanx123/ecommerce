@@ -17,17 +17,26 @@ const Product = ()=>{
     },[])
     // const [buttonPopup ,setButtonPopup] = useState(false);
     const [popupcontent,setPopupcontent] = useState([]);
+    const [popuptoggle,setpopuptoggle] = useState(false);
+    // const [styling,setstyling] = useState(null);
     const changecontent = (item)=>{
         setPopupcontent([item]);
+        setpopuptoggle(!popuptoggle);
+        // if(styling === null){
+        //     setstyling({position:"fixed"})
+        // }else{
+        //     setstyling(null);
+        // }
     };
 
     return (
         <>
+        <div>
             <div className="text-container">
             <p>Available Products</p>
 
             </div>
-        <div className="main-container">
+        <div className="main-container" >
             
         
     {
@@ -52,28 +61,29 @@ const Product = ()=>{
         
     
     </div>
-    {/* <Popup trigger = {buttonPopup} setTrigger={setButtonPopup}>
-        {
-            (posts) ?
-            (
-                posts.map((item)=>{
-                    return (
-                        <p>{item.id}</p>
-                    )
-                })
-            ) : (<h3>Loading...</h3>)
-        }
-    </Popup> */}
+    
+    {popuptoggle &&<div className="pop_up_container">
+        <div className="pop_up_body" >
+
+        <div className="pop_up_header">
+            <button onClick={changecontent}>CLOSE</button>
+        </div>
     <div className="popup-content">
     {
         popupcontent.map((pop)=>{
             return (
-                <p>{pop.id}</p>
+                <div>
+                    <img src={pop.image_link} alt="err"/>
+                    <p>{pop.description}</p>
+
+                </div>
             )
         })
     }
     </div>
-      
+        </div>
+    </div>}
+      </div>
         </>
     )
 }
